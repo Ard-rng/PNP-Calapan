@@ -1,0 +1,242 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PNP SALN Form</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        header {
+    background: linear-gradient(to bottom, #002855, #00509E); /* Dark blue to lighter blue */
+    text-align: center;
+    padding: 20px 0; /* Adds spacing to make the gradient visible */
+}
+
+.header-img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Ensures image remains recognizable */
+    object-position: center;
+    background: transparent; /* Keeps image background clear */
+}
+
+        .navbar {
+            background: #00509E;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 18px;
+            padding: 10px;
+        }
+
+        .navbar a:hover {
+            background: #0074E4;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+        }
+
+        .hidden { display: none; }
+
+        .btn {
+            background: #00509E;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: block;
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        .btn:hover {
+            background: #0074E4;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #003366;
+            color: white;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 15px;
+            background: #003366;
+            color: white;
+            position: relative;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+
+    <header>
+
+    <img src="png.png" alt="TESTTTT/pnp.jpg" class="header-img">
+    </header>
+    <div class="container-wrapper">
+        <!-- Navbar -->
+        <div class="navbar">
+            <a href="#" onclick="showPage('home')">Home</a>
+            <a href="#" onclick="showPage('about')">About</a>
+            <a href="#" onclick="showPage('services')">Services</a>
+            <a href="#" onclick="showPage('contact')">Contact</a>
+        </div>
+
+        <!-- Content Sections -->
+        <div id="home" class="container">
+            <h1>Welcome to PNP SALN Library</h1>
+            <p>This system allows authorized personnel to upload, view, and manage SALN documents securely.</p>
+            <button class="btn" onclick="showPage('salnForm')">Get Started</button>
+        </div>
+
+        <div id="about" class="container hidden">
+            <h1>About PNP SALN</h1>
+            <p>The Philippine National Police (PNP) ensures transparency by allowing its personnel to submit their Sworn Statement of Assets, Liabilities, and Net Worth (SALN).</p>
+        </div>
+
+        <div id="services" class="container hidden">
+            <h1>Our Services</h1>
+            <ul>
+                <li>Online SALN Submission</li>
+                <li>Secure Document Storage</li>
+                <li>Verification and Approval</li>
+            </ul>
+        </div>
+
+        <div id="contact" class="container hidden">
+            <h1>Contact Us</h1>
+            <p>Email: <b>contact@pnpsaln.ph</b></p>
+            <p>Phone: <b>+63 123 456 7890</b></p>
+        </div>
+
+        <div id="salnForm" class="container hidden">
+            <h2>Find My Name</h2>
+            <p>Enter a number to find your name:</p>
+            <input type="number" id="inputNumber" placeholder="Enter a number">
+            <button class="btn" onclick="findName()">Find Name</button>
+            <p id="result"></p>
+
+            <h2>Personal Information</h2>
+            <label>Full Name:</label>
+            <input type="text" id="fullName" placeholder="Enter your name">
+
+            <label>Position:</label>
+            <input type="text" placeholder="Enter your position">
+
+            <label>Agency/Office:</label>
+            <input type="text" placeholder="Enter your agency">
+
+            <h2>Assets</h2>
+            <table>
+                <tr>
+                    <th>Description</th>
+                    <th>Year Acquired</th>
+                    <th>Acquisition Cost</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="e.g., House, Car"></td>
+                    <td><input type="text" placeholder="e.g., 2015"></td>
+                    <td><input type="text" placeholder="e.g., ₱1,000,000"></td>
+                </tr>
+            </table>
+
+            <h2>Liabilities</h2>
+            <table>
+                <tr>
+                    <th>Nature</th>
+                    <th>Creditor Name</th>
+                    <th>Outstanding Balance</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="e.g., Salary Loan"></td>
+                    <td><input type="text" placeholder="Bank Name"></td>
+                    <td><input type="text" placeholder="e.g., ₱200,000"></td>
+                </tr>
+            </table>
+
+            <div class="buttons">
+                <button class="btn" onclick="window.print()">Print</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sticky Footer -->
+    <div class="footer">
+        &copy; 2025 Philippine National Police | All Rights Reserved
+    </div>
+
+    <script>
+        function showPage(pageId) {
+            const pages = ["home", "about", "services", "contact", "salnForm"];
+            pages.forEach(page => {
+                document.getElementById(page).classList.add("hidden");
+            });
+
+            document.getElementById(pageId).classList.remove("hidden");
+        }
+
+        const names = [
+            "Juan", "Maria", "Jose", "Andres", "Emilio",
+            "Antonio", "Gabriela", "Diego", "Melchora", "Manuel"
+        ];
+
+        function findName() {
+            let number = document.getElementById("inputNumber").value;
+            let result = document.getElementById("result");
+            let fullNameField = document.getElementById("fullName");
+
+            if (number >= 1 && number <= names.length) {
+                let foundName = names[number - 1];
+                result.innerHTML = "Name: <b>" + foundName + "</b>";
+                fullNameField.value = foundName;
+            } else {
+                result.innerHTML = " No name found for this number.";
+                fullNameField.value = "";
+            }
+        }
+    </script>
+
+</body>
+</html>
